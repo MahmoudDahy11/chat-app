@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "501147131892",
+    "project_id": "chat-app-mahmoud-c518e",
+    "storage_bucket": "chat-app-mahmoud-c518e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501147131892:android:84bd30baeebe67623ba3a1",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzuow0bMP0fdaIGAkyK72JmGDE5AOa3gY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501147131892:android:503d95dbcdce757d3ba3a1",
+        "android_client_info": {
+          "package_name": "com.example.chat_app_mahmoud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzuow0bMP0fdaIGAkyK72JmGDE5AOa3gY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
