@@ -125,12 +125,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Future<void> loginUser() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email!,
-      password: password!,
-    );
-  }
+  
 }
 
 

@@ -4,7 +4,6 @@ import 'package:chat_app_mahmoud/constant.dart';
 import 'package:chat_app_mahmoud/helper/show_snak_bar.dart';
 import 'package:chat_app_mahmoud/screens/chat_page.dart';
 import 'package:chat_app_mahmoud/screens/cubit/register_cubit/register_cubit_cubit.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -28,6 +27,7 @@ class RegisterPage extends StatelessWidget {
           isLoading = true;
         } else if (state is RegisterSuccess) {
           Navigator.of(context).pushNamed(ChatPage().id);
+          isLoading = false;
         } else if (state is RegisterFailure) {
           showSnakBar(context, state.errMessage);
         }
@@ -121,12 +121,5 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Future<void> registerUser() async {
-    var auth = FirebaseAuth.instance;
-    // ignore: unused_local_variable
-    UserCredential user = await auth.createUserWithEmailAndPassword(
-      email: email!,
-      password: password!,
-    );
-  }
+ 
 }
