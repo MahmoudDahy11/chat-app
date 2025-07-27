@@ -8,14 +8,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
-  String id = 'LoginPage';
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
 
-class _LoginPageState extends State<LoginPage> {
+
+
+
+
+class LoginPage extends StatelessWidget {
+    LoginPage({super.key});
+   static String id = 'LoginPage';
   String? email;
 
   String? password;
@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
                         isLoading = true;
-                        setState(() {});
+         
                         try {
                           await loginUser();
                           Navigator.pushNamed(context, ChatPage().id , arguments: email);
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                           showSnakBar(context, 'there was an error');
                         }
                         isLoading = false;
-                        setState(() {});
+        
                       } else {}
                     },
                   ),

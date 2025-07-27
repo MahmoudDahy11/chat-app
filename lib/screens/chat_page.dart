@@ -23,7 +23,7 @@ class ChatPage extends StatelessWidget {
         if (snapshot.hasData) {
           List<Message> messgeList = [];
           for (int i = 0; i < snapshot.data!.docs.length; i++) {
-            messgeList.add(Message.fromjson(snapshot.data!.docs[i]));
+            messgeList.add(Message.fromJson(snapshot.data!.docs[i]));
           }
           return Scaffold(
             appBar: AppBar(
@@ -97,5 +97,3 @@ class ChatPage extends StatelessWidget {
 }
 
 
-// MahmoudDahy@gmail.com
-// 123123123
