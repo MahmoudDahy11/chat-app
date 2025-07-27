@@ -129,6 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future<void> registerUser() async {
     var auth = FirebaseAuth.instance;
+    // ignore: unused_local_variable
     UserCredential user = await auth.createUserWithEmailAndPassword(
       email: email!,
       password: password!,

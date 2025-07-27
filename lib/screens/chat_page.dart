@@ -4,6 +4,7 @@ import 'package:chat_app_mahmoud/models/message.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// ignore: must_be_immutable
 class ChatPage extends StatelessWidget {
   ChatPage({super.key});
   String id = 'ChatPage';
@@ -96,5 +97,3 @@ class ChatPage extends StatelessWidget {
 }
 
 
-// MahmoudDahy@gmail.com
-// 123123123

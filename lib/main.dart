@@ -33,6 +33,3 @@ class ScholarChat extends StatelessWidget {
   }
 }
 
-
-//Mah123@gmail.com
-//123456789

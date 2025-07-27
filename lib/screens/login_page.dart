@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   String? email;
   static String id = 'LoginPage';
@@ -18,6 +19,8 @@ class LoginPage extends StatelessWidget {
   bool isLoading = false;
 
   GlobalKey<FormState> formKey = GlobalKey();
+
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
