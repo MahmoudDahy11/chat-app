@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatPage extends StatelessWidget {
+  ChatPage({super.key});
   String id = 'ChatPage';
   CollectionReference message = FirebaseFirestore.instance.collection(
     kMessagesCollection,
   );
   TextEditingController controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-
-  ChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class ChatPage extends StatelessWidget {
         if (snapshot.hasData) {
           List<Message> messgeList = [];
           for (int i = 0; i < snapshot.data!.docs.length; i++) {
-            messgeList.add(Message.fromjson(snapshot.data!.docs[i]));
+            messgeList.add(Message.fromJson(snapshot.data!.docs[i]));
           }
           return Scaffold(
             appBar: AppBar(

@@ -6,7 +6,13 @@ class Message {
 
   Message(this.message, this.id);
 
-  factory Message.fromjson(jsonData) {
-    return Message(jsonData[kMessage] , jsonData['id']);
+  factory Message.fromJson(jsonData) {
+    if (jsonData[kMessage] == null || jsonData['id'] == null) {
+      throw Exception("Missing required fields in Message JSON");
+    }
+    return Message(
+      jsonData[kMessage] ?? '', 
+      jsonData['id'] ?? '', 
+    );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:chat_app_mahmoud/firebase_options.dart';
 import 'package:chat_app_mahmoud/screens/chat_page.dart';
+import 'package:chat_app_mahmoud/screens/cubit/login_cubit/login_cubit.dart';
 import 'package:chat_app_mahmoud/screens/login_page.dart';
 import 'package:chat_app_mahmoud/screens/register_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,14 +18,21 @@ class ScholarChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        LoginPage.id: (context) => LoginPage(),
-        RegisterPage.id: (context) => RegisterPage(),
-        ChatPage().id: (context) => ChatPage(),
-      },
-      initialRoute: LoginPage.id,
+    return BlocProvider(
+      create: (context) => LoginCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          LoginPage.id: (context) => LoginPage(),
+          RegisterPage.id: (context) => RegisterPage(),
+          ChatPage().id: (context) => ChatPage(),
+        },
+        initialRoute: LoginPage.id,
+      ),
     );
   }
 }
+
+
+//Mah123@gmail.com
+//123456789
