@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:chat_app_mahmoud/constant.dart';
 import 'package:chat_app_mahmoud/models/message.dart';
@@ -29,8 +31,10 @@ class ChatCubit extends Cubit<ChatState> {
       List<Message> messageList = [];
 
       for (var doc in event.docs) {
+        
         messageList.add(Message.fromJson(doc));
       }
+  
       emit(ChatSuccess(messages: messageList));
     });
   }

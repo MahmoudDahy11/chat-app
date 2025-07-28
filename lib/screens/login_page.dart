@@ -3,6 +3,7 @@ import 'package:chat_app_mahmoud/components/custom_text_field.dart';
 import 'package:chat_app_mahmoud/constant.dart';
 import 'package:chat_app_mahmoud/helper/show_snak_bar.dart';
 import 'package:chat_app_mahmoud/screens/chat_page.dart';
+import 'package:chat_app_mahmoud/screens/cubit/chat_cubit/chat_cubit.dart';
 import 'package:chat_app_mahmoud/screens/cubit/login_cubit/login_cubit.dart';
 import 'package:chat_app_mahmoud/screens/register_page.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,8 @@ class LoginPage extends StatelessWidget {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
-          Navigator.of(context).pushNamed(ChatPage().id);
+          BlocProvider.of<ChatCubit>(context).getMessages();
+          Navigator.of(context).pushNamed(ChatPage().id, arguments: email);
           isLoading = false;
         } else if (state is LoginFaliure) {
           showSnakBar(context, state.errMessage);

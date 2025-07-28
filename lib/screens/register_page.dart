@@ -3,6 +3,7 @@ import 'package:chat_app_mahmoud/components/custom_text_field.dart';
 import 'package:chat_app_mahmoud/constant.dart';
 import 'package:chat_app_mahmoud/helper/show_snak_bar.dart';
 import 'package:chat_app_mahmoud/screens/chat_page.dart';
+import 'package:chat_app_mahmoud/screens/cubit/chat_cubit/chat_cubit.dart';
 import 'package:chat_app_mahmoud/screens/cubit/register_cubit/register_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,8 @@ class RegisterPage extends StatelessWidget {
         if (state is RegisterLoading) {
           isLoading = true;
         } else if (state is RegisterSuccess) {
-          Navigator.of(context).pushNamed(ChatPage().id);
+          BlocProvider.of<ChatCubit>(context).getMessages();
+          Navigator.of(context).pushNamed(ChatPage().id, arguments: email);
           isLoading = false;
         } else if (state is RegisterFailure) {
           showSnakBar(context, state.errMessage);

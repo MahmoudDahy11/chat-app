@@ -1,8 +1,9 @@
 import 'package:chat_app_mahmoud/components/chat_bubble.dart';
 import 'package:chat_app_mahmoud/constant.dart';
 import 'package:chat_app_mahmoud/models/message.dart';
+import 'package:chat_app_mahmoud/screens/cubit/chat_cubit/chat_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ignore: must_be_immutable
 class ChatPage extends StatelessWidget {
@@ -16,7 +17,7 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var email = ModalRoute.of(context)!.settings.arguments;
+    var email = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
       appBar: AppBar(
@@ -34,14 +35,23 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              reverse: true,
-              controller: _scrollController,
-              itemCount: messgeList.length,
-              itemBuilder: (context, index) {
-                return messgeList[index].id == email
-                    ? ChatBubble(message: messgeList[index])
-                    : ChatBubbleForFriend(message: messgeList[index]);
+            child: BlocConsumer<ChatCubit, ChatState>(
+              listener: (context, state) {
+                if (state is ChatSuccess) {
+                  messgeList = state.messages;
+                }
+              },
+              builder: (context, state) {
+                return ListView.builder(
+                  reverse: true,
+                  controller: _scrollController,
+                  itemCount: messgeList.length,
+                  itemBuilder: (context, index) {
+                    return messgeList[index].id == email
+                        ? ChatBubble(message: messgeList[index])
+                        : ChatBubbleForFriend(message: messgeList[index]);
+                  },
+                );
               },
             ),
           ),
@@ -51,6 +61,9 @@ class ChatPage extends StatelessWidget {
               controller: controller,
               onSubmitted: (data) {
                 {
+                  BlocProvider.of<ChatCubit>(
+                    context,
+                  ).sendMessage(message: data, email: email);
                   controller.clear();
                   _scrollController.animateTo(
                     0,
@@ -78,3 +91,10 @@ class ChatPage extends StatelessWidget {
     );
   }
 }
+
+
+/**
+ * if (state is ChatSuccess) {
+                  messgeList = state.messages;
+                }
+ */
