@@ -78,3 +78,46 @@ This button will show a loading spinner while the async operation is running.
 
 ---
 
+_**User**_
+
+how to add onTransition in AuthCubit
+
+---
+
+_**Assistant**_
+
+To add `onTransition` in your `AuthCubit`, you need to override the `onTransition` method from the `Bloc` class. This method allows you to observe state transitions for debugging or logging.
+
+Here’s how you can add it:
+
+````dart
+class AuthCubit extends Cubit<AuthState> {
+  AuthCubit() : super(AuthInitial());
+
+  @override
+  void onTransition(Transition<AuthState, AuthState> transition) {
+    super.onTransition(transition);
+    print(transition); // You can replace this with any logging logic
+  }
+
+  // ...existing code...
+}
+````
+
+**Note:**  
+- `onTransition` is available in `Bloc`, not `Cubit`.  
+- If you want to use `onTransition`, you should extend `Bloc<Event, State>` instead of `Cubit<State>`.  
+- For `Cubit`, you can use `onChange` to observe state changes:
+
+````dart
+@override
+void onChange(Change<AuthState> change) {
+  super.onChange(change);
+  print(change);
+}
+````
+
+If you need transition logic, consider switching to `Bloc`. For simple state change logging, use `onChange` in your `Cubit`.
+
+---
+

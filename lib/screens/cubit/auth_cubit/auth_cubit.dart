@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
@@ -6,8 +8,8 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
- 
-    Future<void> loginUser({
+
+  Future<void> loginUser({
     required String email,
     required String password,
   }) async {
@@ -28,6 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(LoginFaliure(e.toString()));
     }
   }
+
   Future<void> registerUser({
     required String email,
     required String password,
@@ -52,5 +55,10 @@ class AuthCubit extends Cubit<AuthState> {
       emit(RegisterFailure(e.toString()));
     }
   }
-  
+
+  @override
+  void onChange(Change<AuthState> change) {
+    super.onChange(change);
+    log('AuthCubit state changed: ${change.currentState} -> ${change.nextState}');
+  }
 }
