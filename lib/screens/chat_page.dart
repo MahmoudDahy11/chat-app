@@ -93,8 +93,3 @@ class ChatPage extends StatelessWidget {
 }
 
 
-/**
- * if (state is ChatSuccess) {
-                  messgeList = state.messages;
-                }
- */
